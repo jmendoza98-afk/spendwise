@@ -53,3 +53,25 @@
   color: #555560;
   font-family: 'DM Mono', monospace;
 }
+
+.budgetClickable {
+  color: #888890;
+  cursor: pointer;
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  transition: color 0.15s;
+}
+
+.budgetClickable:hover { color: #6C8EF5; }
+
+.budgetInput {
+  background: none;
+  border: none;
+  border-bottom: 1px solid #6C8EF5;
+  color: #f0eee8;
+  font-family: 'DM Mono', monospace;
+  font-size: 14px;
+  width: 90px;
+  outline: none;
+  padding: 0 2px;
+}

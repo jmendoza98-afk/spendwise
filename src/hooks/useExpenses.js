@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, useRef } from 'react'
 import { SEED_EXPENSES, MONTHLY_BUDGET } from '../data/expenses'
 
 const STORAGE_KEY = 'spendwise_expenses'
+const BUDGET_KEY  = 'spendwise_budget'
 
 function loadExpenses() {
   try {
@@ -12,19 +13,28 @@ function loadExpenses() {
   }
 }
 
+function loadBudget() {
+  try {
+    const raw = localStorage.getItem(BUDGET_KEY)
+    return raw ? Number(raw) : MONTHLY_BUDGET
+  } catch {
+    return MONTHLY_BUDGET
+  }
+}
+
 function getNextId(expenses) {
   return expenses.length > 0 ? Math.max(...expenses.map(e => e.id)) + 1 : 1
 }
 
 export function useExpenses() {
-  const [expenses, setExpenses] = useState(() => loadExpenses())
+  const [expenses, setExpenses]             = useState(() => loadExpenses())
+  const [budget, setBudgetState]            = useState(() => loadBudget())
   const [filterCategory, setFilterCategory] = useState('all')
   const [searchQuery, setSearchQuery]       = useState('')
   const [sortBy, setSortBy]                 = useState('date_desc')
-  const nextIdRef = useRef(getNextId(loadExpenses()))
+  const nextIdRef   = useRef(getNextId(loadExpenses()))
   const debounceRef = useRef(null)
 
-  // Persist on change
   useEffect(() => {
     if (debounceRef.current) clearTimeout(debounceRef.current)
     debounceRef.current = setTimeout(() => {
@@ -38,17 +48,22 @@ export function useExpenses() {
     return () => window.removeEventListener('beforeunload', save)
   }, [expenses])
 
-  // Derived stats
+  const setBudget = useCallback((amount) => {
+    const val = Number(amount)
+    if (!val || val <= 0) return
+    setBudgetState(val)
+    localStorage.setItem(BUDGET_KEY, String(val))
+  }, [])
+
   const totalSpent = expenses.reduce((sum, e) => sum + e.amount, 0)
-  const remaining  = MONTHLY_BUDGET - totalSpent
-  const budgetPct  = Math.min((totalSpent / MONTHLY_BUDGET) * 100, 100)
+  const remaining  = budget - totalSpent
+  const budgetPct  = Math.min((totalSpent / budget) * 100, 100)
 
   const byCategory = expenses.reduce((acc, e) => {
     acc[e.category] = (acc[e.category] || 0) + e.amount
     return acc
   }, {})
 
-  // Filtered + sorted list
   const filtered = expenses
     .filter(e => {
       const matchCat   = filterCategory === 'all' || e.category === filterCategory
@@ -81,20 +96,9 @@ export function useExpenses() {
   }, [])
 
   return {
-    expenses,
-    filtered,
-    totalSpent,
-    remaining,
-    budgetPct,
-    byCategory,
-    filterCategory,
-    searchQuery,
-    sortBy,
-    setFilterCategory,
-    setSearchQuery,
-    setSortBy,
-    addExpense,
-    deleteExpense,
-    budget: MONTHLY_BUDGET,
+    expenses, filtered, totalSpent, remaining, budgetPct,
+    byCategory, filterCategory, searchQuery, sortBy,
+    budget, setBudget, setFilterCategory, setSearchQuery,
+    setSortBy, addExpense, deleteExpense,
   }
 }

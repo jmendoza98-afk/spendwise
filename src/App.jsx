@@ -14,7 +14,7 @@ export default function App() {
     filtered, totalSpent, remaining, budgetPct, byCategory,
     filterCategory, searchQuery, sortBy,
     setFilterCategory, setSearchQuery, setSortBy,
-    addExpense, deleteExpense, budget,
+    addExpense, deleteExpense, budget, setBudget,
   } = useExpenses()
 
   const topCategory = Object.entries(byCategory).sort((a, b) => b[1] - a[1])[0]
@@ -67,7 +67,7 @@ export default function App() {
         {/* Budget bar + chart */}
         <div className={styles.middle}>
           <div className={styles.budgetWrap}>
-            <BudgetBar spent={totalSpent} budget={budget} pct={budgetPct} />
+            <BudgetBar spent={totalSpent} budget={budget} pct={budgetPct} onSetBudget={setBudget} />
           </div>
           <SpendingChart byCategory={byCategory} />
         </div>
