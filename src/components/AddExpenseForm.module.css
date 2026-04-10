@@ -1,0 +1,129 @@
+.overlay {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 100;
+  padding: 24px;
+}
+
+.modal {
+  background: #16161a;
+  border: 1px solid #2a2a32;
+  border-radius: 16px;
+  width: 100%;
+  max-width: 480px;
+  padding: 28px;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 24px;
+}
+
+.title {
+  font-size: 18px;
+  font-weight: 600;
+  color: #f0eee8;
+}
+
+.close {
+  background: none;
+  border: none;
+  color: #555560;
+  font-size: 16px;
+  cursor: pointer;
+  padding: 4px 8px;
+  border-radius: 6px;
+  transition: color 0.15s;
+}
+
+.close:hover { color: #f0eee8; }
+
+.form { display: flex; flex-direction: column; gap: 16px; }
+
+.field { display: flex; flex-direction: column; gap: 6px; }
+
+.row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: #555560;
+}
+
+.input {
+  background: #1e1e26;
+  border: 1px solid #2a2a32;
+  border-radius: 8px;
+  padding: 10px 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  color: #f0eee8;
+  outline: none;
+  transition: border-color 0.15s;
+  width: 100%;
+}
+
+.input::placeholder { color: #333340; }
+.input:focus { border-color: #6C8EF5; }
+
+/* date input color fix */
+.input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.5); }
+
+.categories {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.catBtn {
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  padding: 5px 12px;
+  border-radius: 20px;
+  border: 1px solid #2a2a32;
+  background: #1e1e26;
+  color: #888890;
+  cursor: pointer;
+  transition: all 0.15s;
+}
+
+.catBtn:hover { border-color: var(--cat-color); color: var(--cat-color); }
+.catActive {
+  background: color-mix(in srgb, var(--cat-color) 15%, transparent);
+  border-color: var(--cat-color);
+  color: var(--cat-color);
+}
+
+.error {
+  font-size: 12px;
+  color: #F56C6C;
+  background: #2a1818;
+  border: 1px solid #4a2020;
+  border-radius: 6px;
+  padding: 8px 12px;
+}
+
+.submit {
+  background: #6C8EF5;
+  color: #0a0a12;
+  border: none;
+  border-radius: 8px;
+  padding: 12px;
+  font-family: 'Outfit', sans-serif;
+  font-size: 14px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s, transform 0.1s;
+  margin-top: 4px;
+}
+
+.submit:hover  { background: #8aaaf7; }
+.submit:active { transform: scale(0.98); }
