@@ -32,7 +32,7 @@ export function SpendingChart({ byCategory }) {
             <Tooltip
               formatter={(val) => formatCurrency(val)}
               contentStyle={{
-                background: '#1e1e26',
+                background: '#eaeaef',
                 border: '1px solid #2a2a32',
                 borderRadius: '8px',
                 color: '#f0eee8',
