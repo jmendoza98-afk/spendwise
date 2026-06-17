@@ -22,12 +22,12 @@
   padding: 7px 12px;
   font-family: 'Outfit', sans-serif;
   font-size: 13px;
-  color: #f0eee8;
+  color: #ffffff;
   outline: none;
   transition: border-color 0.15s;
 }
 
-.search::placeholder { color: #333340; }
+.search::placeholder { color: #ffffff; }
 .search:focus { border-color: #6C8EF544; }
 
 .select {
@@ -37,7 +37,7 @@
   padding: 7px 10px;
   font-family: 'Outfit', sans-serif;
   font-size: 12px;
-  color: #888890;
+  color: #ffffff;
   outline: none;
   cursor: pointer;
 }
@@ -130,4 +130,38 @@
   text-align: center;
   color: #333340;
   font-size: 14px;
+}
+
+.recurringBanner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: #6C8EF511;
+  border-bottom: 1px solid #6C8EF533;
+  font-size: 12px;
+  color: #888890;
+  font-weight: 600;
+}
+
+.recurringAmt {
+  font-family: 'DM Mono', monospace;
+  color: #6C8EF5;
+  font-size: 13px;
+}
+
+.titleRow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.badge {
+  font-size: 10px;
+  font-weight: 600;
+  padding: 2px 7px;
+  border-radius: 20px;
+  border: 1px solid transparent;
+  white-space: nowrap;
 }

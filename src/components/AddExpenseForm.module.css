@@ -127,3 +127,26 @@
 
 .submit:hover  { background: #8aaaf7; }
 .submit:active { transform: scale(0.98); }
+
+.recurrence {
+  display: flex;
+  gap: 8px;
+}
+
+.recBtn {
+  flex: 1;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px;
+  font-weight: 600;
+  padding: 8px 6px;
+  border-radius: 8px;
+  border: 1px solid #2a2a32;
+  background: #1e1e26;
+  color: #555560;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: center;
+}
+
+.recBtn:hover { border-color: #6C8EF5; color: #f0eee8; }
+.recActive    { background: #6C8EF511; border-color: #6C8EF5; color: #6C8EF5; }

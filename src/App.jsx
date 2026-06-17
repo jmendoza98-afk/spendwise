@@ -6,16 +6,17 @@ import { SpendingChart } from './components/SpendingChart'
 import { ExpenseList } from './components/ExpenseList'
 import { AddExpenseForm } from './components/AddExpenseForm'
 import { formatCurrency } from './utils/format'
+import { exportToCSV } from './utils/exportCSV'
 import styles from './App.module.css'
 
 export default function App() {
   const [showForm, setShowForm] = useState(false)
   const {
-    filtered, totalSpent, remaining, budgetPct, byCategory,
-    filterCategory, searchQuery, sortBy,
-    setFilterCategory, setSearchQuery, setSortBy,
-    addExpense, deleteExpense, budget, setBudget,
-  } = useExpenses()
+  expenses, filtered, totalSpent, remaining, budgetPct, byCategory,
+  filterCategory, searchQuery, sortBy,
+  setFilterCategory, setSearchQuery, setSortBy,
+  addExpense, deleteExpense, budget, setBudget,
+} = useExpenses()
 
   const topCategory = Object.entries(byCategory).sort((a, b) => b[1] - a[1])[0]
 
@@ -29,9 +30,14 @@ export default function App() {
             <h1 className={styles.logo}>spend<span>wise</span></h1>
             <p className={styles.sub}>Personal Finance Dashboard</p>
           </div>
-          <button className={styles.addBtn} onClick={() => setShowForm(true)}>
-            + Add Expense
-          </button>
+          <div className={styles.headerBtns}>
+            <button className={styles.exportBtn} onClick={() => exportToCSV(expenses)}>
+              ↓ Export CSV
+            </button>
+            <button className={styles.addBtn} onClick={() => setShowForm(true)}>
+             + Add Expense
+            </button>
+          </div>
         </div>
 
         {/* Stat cards */}
@@ -69,7 +75,7 @@ export default function App() {
           <div className={styles.budgetWrap}>
             <BudgetBar spent={totalSpent} budget={budget} pct={budgetPct} onSetBudget={setBudget} />
           </div>
-          <SpendingChart byCategory={byCategory} />
+          <SpendingChart byCategory={byCategory} expenses={expenses} />
         </div>
 
         {/* Expense list */}

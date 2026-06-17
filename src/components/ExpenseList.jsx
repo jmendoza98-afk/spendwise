@@ -2,10 +2,19 @@ import { CATEGORY_MAP, CATEGORIES } from '../data/expenses'
 import { formatCurrency, formatDate } from '../utils/format'
 import styles from './ExpenseList.module.css'
 
+const RECURRENCE_BADGE = {
+  weekly:  { label: '🔁 Weekly',  color: '#6CF5C2' },
+  monthly: { label: '📅 Monthly', color: '#6C8EF5' },
+}
+
 export function ExpenseList({
   expenses, filterCategory, searchQuery, sortBy,
   setFilterCategory, setSearchQuery, setSortBy, onDelete,
 }) {
+  const recurringTotal = expenses
+    .filter(e => e.recurring && e.recurring !== 'none')
+    .reduce((sum, e) => sum + e.amount, 0)
+
   return (
     <div className={styles.wrap}>
       <div className={styles.toolbar}>
@@ -37,17 +46,32 @@ export function ExpenseList({
         </select>
       </div>
 
+      {recurringTotal > 0 && (
+        <div className={styles.recurringBanner}>
+          <span>🔁 Recurring expenses this month:</span>
+          <span className={styles.recurringAmt}>{formatCurrency(recurringTotal)}</span>
+        </div>
+      )}
+
       <div className={styles.list}>
         {expenses.length === 0 ? (
           <div className={styles.empty}>No expenses found.</div>
         ) : (
           expenses.map(e => {
-            const cat = CATEGORY_MAP[e.category]
+            const cat    = CATEGORY_MAP[e.category]
+            const badge  = e.recurring && e.recurring !== 'none' ? RECURRENCE_BADGE[e.recurring] : null
             return (
               <div key={e.id} className={styles.item}>
                 <div className={styles.dot} style={{ background: cat?.color }} />
                 <div className={styles.info}>
-                  <span className={styles.desc}>{e.description}</span>
+                  <div className={styles.titleRow}>
+                    <span className={styles.desc}>{e.description}</span>
+                    {badge && (
+                      <span className={styles.badge} style={{ color: badge.color, borderColor: badge.color + '44', background: badge.color + '11' }}>
+                        {badge.label}
+                      </span>
+                    )}
+                  </div>
                   <span className={styles.meta}>
                     <span className={styles.catLabel} style={{ color: cat?.color }}>{cat?.label}</span>
                     <span className={styles.date}>{formatDate(e.date)}</span>

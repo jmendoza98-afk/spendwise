@@ -1,8 +1,14 @@
 import { useState } from 'react'
-import { CATEGORIES } from '../data/expenses'
+import { CATEGORIES, RECURRENCE_OPTIONS } from '../data/expenses'
 import styles from './AddExpenseForm.module.css'
 
-const EMPTY = { description: '', amount: '', category: 'food', date: new Date().toISOString().slice(0, 10) }
+const EMPTY = {
+  description: '',
+  amount: '',
+  category: 'food',
+  date: new Date().toISOString().slice(0, 10),
+  recurring: 'none',
+}
 
 export function AddExpenseForm({ onAdd, onClose }) {
   const [form, setForm] = useState(EMPTY)
@@ -78,6 +84,22 @@ export function AddExpenseForm({ onAdd, onClose }) {
                   onClick={() => set('category', c.id)}
                 >
                   {c.label}
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className={styles.field}>
+            <label className={styles.label}>Recurrence</label>
+            <div className={styles.recurrence}>
+              {RECURRENCE_OPTIONS.map(r => (
+                <button
+                  key={r.id}
+                  type="button"
+                  className={`${styles.recBtn} ${form.recurring === r.id ? styles.recActive : ''}`}
+                  onClick={() => set('recurring', r.id)}
+                >
+                  {r.id === 'monthly' ? '📅' : r.id === 'weekly' ? '🔁' : '1️⃣'} {r.label}
                 </button>
               ))}
             </div>
