@@ -28,7 +28,7 @@ export default function App() {
         <div className={styles.header}>
           <div>
             <h1 className={styles.logo}>spend<span>wise</span></h1>
-            <p className={styles.sub}>Personal Finance Dashboard</p>
+            <p className={styles.sub}>Personal finance</p>
           </div>
           <div className={styles.headerBtns}>
             <button className={styles.exportBtn} onClick={() => exportToCSV(expenses)}>
@@ -43,31 +43,31 @@ export default function App() {
         {/* Stat cards */}
         <div className={styles.stats}>
           <StatCard
-            label="Total Spent"
-            value={formatCurrency(totalSpent)}
-            sub="This month"
-            accent="#6C8EF5"
+          label="Total Spent"
+          value={formatCurrency(totalSpent)}
+          sub="This month"
+          accent="#0b6b4f"
           />
           <StatCard
-            label="Remaining"
-            value={formatCurrency(Math.abs(remaining))}
-            sub={remaining < 0 ? 'Over budget' : 'Left in budget'}
-            accent={remaining < 0 ? '#F56C6C' : '#6CF5C2'}
+          label="Remaining"
+          value={formatCurrency(Math.abs(remaining))}
+          sub={remaining < 0 ? 'Over budget' : 'Left in budget'}
+          accent={remaining < 0 ? '#c0392b' : '#1f8a5f'}
           />
           <StatCard
-            label="Transactions"
-            value={filtered.length}
-            sub="Recorded expenses"
-            accent="#F5A26C"
+          label="Transactions"
+          value={filtered.length}
+          sub="Recorded expenses"
+          accent="#d17a22"
           />
           {topCategory && (
-            <StatCard
-              label="Top Category"
-              value={formatCurrency(topCategory[1])}
-              sub={topCategory[0].charAt(0).toUpperCase() + topCategory[0].slice(1)}
-              accent="#F56C9A"
-            />
-          )}
+         <StatCard
+          label="Top Category"
+        value={formatCurrency(topCategory[1])}
+        sub={topCategory[0].charAt(0).toUpperCase() + topCategory[0].slice(1)}
+        accent="#b8456f"
+        />
+        )}
         </div>
 
         {/* Budget bar + chart */}

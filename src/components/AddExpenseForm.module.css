@@ -1,7 +1,7 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.7);
+  background: rgba(22, 32, 28, 0.45);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -10,9 +10,9 @@
 }
 
 .modal {
-  background: #16161a;
-  border: 1px solid #2a2a32;
-  border-radius: 16px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 10px;
   width: 100%;
   max-width: 480px;
   padding: 28px;
@@ -28,21 +28,21 @@
 .title {
   font-size: 18px;
   font-weight: 600;
-  color: #f0eee8;
+  color: var(--text);
 }
 
 .close {
   background: none;
   border: none;
-  color: #555560;
+  color: var(--muted);
   font-size: 16px;
   cursor: pointer;
   padding: 4px 8px;
-  border-radius: 6px;
+  border-radius: 4px;
   transition: color 0.15s;
 }
 
-.close:hover { color: #f0eee8; }
+.close:hover { color: var(--text); }
 
 .form { display: flex; flex-direction: column; gap: 16px; }
 
@@ -51,31 +51,26 @@
 .row { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
 
 .label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-  color: #555560;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
 }
 
 .input {
-  background: #1e1e26;
-  border: 1px solid #2a2a32;
-  border-radius: 8px;
+  background: #ffffff;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   padding: 10px 12px;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font);
   font-size: 14px;
-  color: #f0eee8;
+  color: var(--text);
   outline: none;
   transition: border-color 0.15s;
   width: 100%;
 }
 
-.input::placeholder { color: #333340; }
-.input:focus { border-color: #6C8EF5; }
-
-/* date input color fix */
-.input[type="date"]::-webkit-calendar-picker-indicator { filter: invert(0.5); }
+.input::placeholder { color: var(--faint); }
+.input:focus { border-color: var(--accent); }
 
 .categories {
   display: flex;
@@ -84,49 +79,49 @@
 }
 
 .catBtn {
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font);
   font-size: 12px;
   padding: 5px 12px;
-  border-radius: 20px;
-  border: 1px solid #2a2a32;
-  background: #1e1e26;
-  color: #888890;
+  border-radius: 4px;
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--muted);
   cursor: pointer;
   transition: all 0.15s;
 }
 
 .catBtn:hover { border-color: var(--cat-color); color: var(--cat-color); }
 .catActive {
-  background: color-mix(in srgb, var(--cat-color) 15%, transparent);
+  background: color-mix(in srgb, var(--cat-color) 12%, white);
   border-color: var(--cat-color);
   color: var(--cat-color);
+  font-weight: 600;
 }
 
 .error {
   font-size: 12px;
-  color: #F56C6C;
-  background: #2a1818;
-  border: 1px solid #4a2020;
-  border-radius: 6px;
+  color: var(--danger);
+  background: #c0392b12;
+  border: 1px solid #c0392b44;
+  border-radius: var(--radius);
   padding: 8px 12px;
 }
 
 .submit {
-  background: #6C8EF5;
-  color: #0a0a12;
+  background: var(--accent);
+  color: #ffffff;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius);
   padding: 12px;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font);
   font-size: 14px;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s, transform 0.1s;
+  transition: background 0.15s;
   margin-top: 4px;
 }
 
-.submit:hover  { background: #8aaaf7; }
-.submit:active { transform: scale(0.98); }
+.submit:hover { background: var(--accent-hi); }
 
 .recurrence {
   display: flex;
@@ -135,18 +130,18 @@
 
 .recBtn {
   flex: 1;
-  font-family: 'Outfit', sans-serif;
+  font-family: var(--font);
   font-size: 12px;
-  font-weight: 600;
+  font-weight: 500;
   padding: 8px 6px;
-  border-radius: 8px;
-  border: 1px solid #2a2a32;
-  background: #1e1e26;
-  color: #555560;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+  background: #ffffff;
+  color: var(--muted);
   cursor: pointer;
   transition: all 0.15s;
   text-align: center;
 }
 
-.recBtn:hover { border-color: #6C8EF5; color: #f0eee8; }
-.recActive    { background: #6C8EF511; border-color: #6C8EF5; color: #6C8EF5; }
+.recBtn:hover { border-color: var(--accent); color: var(--text); }
+.recActive    { background: var(--accent-bg); border-color: var(--accent); color: var(--accent); }

@@ -6,7 +6,7 @@ export function BudgetBar({ spent, budget, pct, onSetBudget }) {
   const [editing, setEditing] = useState(false)
   const [input, setInput]     = useState(String(budget))
   const over     = spent > budget
-  const barColor = pct > 90 ? '#F56C6C' : pct > 70 ? '#F5D76C' : '#6CF5C2'
+  const barColor = pct > 90 ? '#c0392b' : pct > 70 ? '#c99a12' : '#1f8a5f'
 
   function handleSave() {
     const val = parseFloat(input)
@@ -24,7 +24,7 @@ export function BudgetBar({ spent, budget, pct, onSetBudget }) {
       <div className={styles.top}>
         <span className={styles.label}>Monthly Budget</span>
         <div className={styles.amounts}>
-          <span style={{ color: over ? '#F56C6C' : '#f0eee8' }}>{formatCurrency(spent)}</span>
+          <span style={{ color: over ? '#c0392b' : '#16201c' }}>{formatCurrency(spent)}</span>
           <span className={styles.slash}> / </span>
           {editing ? (
             <input
@@ -53,7 +53,7 @@ export function BudgetBar({ spent, budget, pct, onSetBudget }) {
       </div>
 
       <div className={styles.bottom}>
-        <span style={{ color: over ? '#F56C6C' : '#6CF5C2' }}>
+        <span style={{ color: over ? '#c0392b' : '#1f8a5f' }}>
           {over
             ? `${formatCurrency(spent - budget)} over budget`
             : `${formatCurrency(budget - spent)} remaining`}

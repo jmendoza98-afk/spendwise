@@ -1,12 +1,12 @@
 export const CATEGORIES = [
-  { id: 'housing',       label: 'Housing',       color: '#6C8EF5' },
-  { id: 'food',          label: 'Food',           color: '#F5A26C' },
-  { id: 'transport',     label: 'Transport',      color: '#6CF5C2' },
-  { id: 'entertainment', label: 'Entertainment',  color: '#F56C9A' },
-  { id: 'health',        label: 'Health',         color: '#A26CF5' },
-  { id: 'shopping',      label: 'Shopping',       color: '#F5D76C' },
-  { id: 'utilities',     label: 'Utilities',      color: '#6CCFF5' },
-  { id: 'other',         label: 'Other',          color: '#B0B0B0' },
+  { id: 'housing',       label: 'Housing',       color: '#2f5d8a' },
+  { id: 'food',          label: 'Food',          color: '#d17a22' },
+  { id: 'transport',     label: 'Transport',     color: '#1f8a5f' },
+  { id: 'entertainment', label: 'Entertainment', color: '#b8456f' },
+  { id: 'health',        label: 'Health',        color: '#6b52b3' },
+  { id: 'shopping',      label: 'Shopping',      color: '#c99a12' },
+  { id: 'utilities',     label: 'Utilities',     color: '#2a85a8' },
+  { id: 'other',         label: 'Other',         color: '#7b8580' },
 ]
 
 export const CATEGORY_MAP = Object.fromEntries(

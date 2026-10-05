@@ -3,8 +3,8 @@ import { formatCurrency, formatDate } from '../utils/format'
 import styles from './ExpenseList.module.css'
 
 const RECURRENCE_BADGE = {
-  weekly:  { label: '🔁 Weekly',  color: '#6CF5C2' },
-  monthly: { label: '📅 Monthly', color: '#6C8EF5' },
+  weekly:  { label: '🔁 Weekly',  color: '#1f8a5f' },
+  monthly: { label: '📅 Monthly', color: '#0b6b4f' },
 }
 
 export function ExpenseList({

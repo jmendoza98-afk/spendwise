@@ -1,7 +1,7 @@
 .wrap {
-  background: #16161a;
-  border: 1px solid #2a2a32;
-  border-radius: 12px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
   padding: 20px 24px;
   display: flex;
   flex-direction: column;
@@ -15,31 +15,29 @@
 }
 
 .label {
-  font-size: 11px;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: #555560;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--muted);
 }
 
 .amounts {
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 14px;
 }
 
-.slash  { color: #333340; }
-.budget { color: #555560; }
+.slash  { color: var(--faint); }
+.budget { color: var(--muted); }
 
 .track {
-  height: 6px;
-  background: #2a2a32;
-  border-radius: 99px;
+  height: 8px;
+  background: var(--card-2);
+  border: 1px solid var(--border);
+  border-radius: 2px;
   overflow: hidden;
 }
 
 .fill {
   height: 100%;
-  border-radius: 99px;
   transition: width 0.5s ease, background 0.3s ease;
 }
 
@@ -50,26 +48,26 @@
 }
 
 .pct {
-  color: #555560;
-  font-family: 'DM Mono', monospace;
+  color: var(--muted);
+  font-family: var(--mono);
 }
 
 .budgetClickable {
-  color: #888890;
+  color: var(--muted);
   cursor: pointer;
-  font-family: 'DM Mono', monospace;
+  font-family: var(--mono);
   font-size: 14px;
   transition: color 0.15s;
 }
 
-.budgetClickable:hover { color: #6C8EF5; }
+.budgetClickable:hover { color: var(--accent); }
 
 .budgetInput {
   background: none;
   border: none;
-  border-bottom: 1px solid #6C8EF5;
-  color: #f0eee8;
-  font-family: 'DM Mono', monospace;
+  border-bottom: 1px solid var(--accent);
+  color: var(--text);
+  font-family: var(--mono);
   font-size: 14px;
   width: 90px;
   outline: none;

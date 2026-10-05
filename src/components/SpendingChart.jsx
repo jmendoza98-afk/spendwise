@@ -76,15 +76,15 @@ export function SpendingChart({ byCategory, expenses }) {
               <Tooltip
                 formatter={(val) => formatCurrency(val)}
                 contentStyle={{
-                  background: '#1e1e26',
-                  border: '1px solid #2a2a32',
-                  borderRadius: '8px',
-                  color: '#ffffff',
-                  fontSize: '12px',
-                  fontWeight: 600,
-                }}
-                itemStyle={{ color: '#ffffff' }}
-              />
+                     background: '#ffffff',
+                      border: '1px solid #cfd8d4',
+                      borderRadius: '8px',
+                      color: '#16201c',
+                      fontSize: '12px',
+                      fontWeight: 600,
+                        }}
+                        itemStyle={{ color: '#16201c' }}
+                        />
             </PieChart>
           </ResponsiveContainer>
           <div className={styles.legend}>
@@ -103,20 +103,20 @@ export function SpendingChart({ byCategory, expenses }) {
             <AreaChart data={trendData}>
               <defs>
                 <linearGradient id="trendGrad" x1="0" y1="0" x2="0" y2="1">
-                  <stop offset="5%"  stopColor="#6C8EF5" stopOpacity={0.3} />
-                  <stop offset="95%" stopColor="#6C8EF5" stopOpacity={0} />
+                    <stop offset="5%"  stopColor="#0b6b4f" stopOpacity={0.25} />
+                     <stop offset="95%" stopColor="#0b6b4f" stopOpacity={0} />
                 </linearGradient>
               </defs>
-              <CartesianGrid stroke="#1e1e2a" vertical={false} />
+              <CartesianGrid stroke="#e3e9e6" vertical={false} />
               <XAxis
                 dataKey="label"
-                tick={{ fill: '#555560', fontSize: 10 }}
+                tick={{ fill: '#6b7772', fontSize: 10 }}
                 axisLine={false}
                 tickLine={false}
                 interval="preserveStartEnd"
               />
               <YAxis
-                tick={{ fill: '#555560', fontSize: 10 }}
+                tick={{ fill: '#6b7772', fontSize: 10 }}
                 axisLine={false}
                 tickLine={false}
                 tickFormatter={v => `$${v}`}
@@ -124,26 +124,26 @@ export function SpendingChart({ byCategory, expenses }) {
               />
               <Tooltip
                 contentStyle={{
-                  background: '#1e1e26',
-                  border: '1px solid #2a2a32',
-                  borderRadius: '8px',
-                  color: '#ffffff',
-                  fontSize: '12px',
-                  fontWeight: 600,
-                }}
-                itemStyle={{ color: '#ffffff' }}
-                labelStyle={{ color: '#6C8EF5', fontWeight: 700 }}
+                   background: '#ffffff',
+                    border: '1px solid #cfd8d4',
+                    borderRadius: '8px',
+                    color: '#16201c',
+                    fontSize: '12px',
+                    fontWeight: 600,
+                    }}
+                    itemStyle={{ color: '#16201c' }}
+                labelStyle={{ color: '#0b6b4f', fontWeight: 700 }}
                 formatter={(val) => [formatCurrency(val), 'Cumulative']}
               />
               <Area
-                type="monotone"
-                dataKey="cumulative"
-                stroke="#6C8EF5"
-                strokeWidth={2}
-                fill="url(#trendGrad)"
-                dot={false}
-                activeDot={{ r: 4, fill: '#6C8EF5' }}
-              />
+                 type="monotone"
+                  dataKey="cumulative"
+                  stroke="#0b6b4f"
+                  strokeWidth={2}
+                  fill="url(#trendGrad)"
+                  dot={false}
+                  activeDot={{ r: 4, fill: '#0b6b4f' }}
+                />
             </AreaChart>
           </ResponsiveContainer>
         </div>
