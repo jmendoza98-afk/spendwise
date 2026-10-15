@@ -1,9 +1,9 @@
 import { useState } from 'react'
 import {
   PieChart, Pie, Cell, Tooltip, ResponsiveContainer,
-  LineChart, Line, XAxis, YAxis, CartesianGrid, Area, AreaChart
+  XAxis, YAxis, CartesianGrid, Area, AreaChart
 } from 'recharts'
-import { CATEGORIES, CATEGORY_MAP } from '../data/expenses'
+import { CATEGORIES } from '../data/expenses'
 import { formatCurrency } from '../utils/format'
 import styles from './SpendingChart.module.css'
 

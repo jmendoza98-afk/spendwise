@@ -12,8 +12,8 @@ export function ExpenseList({
   setFilterCategory, setSearchQuery, setSortBy, onDelete,
 }) {
   const recurringTotal = expenses
-    .filter(e => e.recurring && e.recurring !== 'none')
-    .reduce((sum, e) => sum + e.amount, 0)
+    .filter(expense => expense.recurring && expense.recurring !== 'none')
+    .reduce((total, expense) => total + expense.amount, 0)
 
   return (
     <div className={styles.wrap}>
@@ -57,28 +57,30 @@ export function ExpenseList({
         {expenses.length === 0 ? (
           <div className={styles.empty}>No expenses found.</div>
         ) : (
-          expenses.map(e => {
-            const cat    = CATEGORY_MAP[e.category]
-            const badge  = e.recurring && e.recurring !== 'none' ? RECURRENCE_BADGE[e.recurring] : null
+          expenses.map(expense => {
+            const category = CATEGORY_MAP[expense.category]
+            const recurrenceBadge = expense.recurring && expense.recurring !== 'none'
+              ? RECURRENCE_BADGE[expense.recurring]
+              : null
             return (
-              <div key={e.id} className={styles.item}>
-                <div className={styles.dot} style={{ background: cat?.color }} />
+              <div key={expense.id} className={styles.item}>
+                <div className={styles.dot} style={{ background: category?.color }} />
                 <div className={styles.info}>
                   <div className={styles.titleRow}>
-                    <span className={styles.desc}>{e.description}</span>
-                    {badge && (
-                      <span className={styles.badge} style={{ color: badge.color, borderColor: badge.color + '44', background: badge.color + '11' }}>
-                        {badge.label}
+                    <span className={styles.desc}>{expense.description}</span>
+                    {recurrenceBadge && (
+                      <span className={styles.badge} style={{ color: recurrenceBadge.color, borderColor: recurrenceBadge.color + '44', background: recurrenceBadge.color + '11' }}>
+                        {recurrenceBadge.label}
                       </span>
                     )}
                   </div>
                   <span className={styles.meta}>
-                    <span className={styles.catLabel} style={{ color: cat?.color }}>{cat?.label}</span>
-                    <span className={styles.date}>{formatDate(e.date)}</span>
+                    <span className={styles.catLabel} style={{ color: category?.color }}>{category?.label}</span>
+                    <span className={styles.date}>{formatDate(expense.date)}</span>
                   </span>
                 </div>
-                <span className={styles.amount}>{formatCurrency(e.amount)}</span>
-                <button className={styles.del} onClick={() => onDelete(e.id)} title="Delete">✕</button>
+                <span className={styles.amount}>{formatCurrency(expense.amount)}</span>
+                <button className={styles.del} onClick={() => onDelete(expense.id)} title="Delete">✕</button>
               </div>
             )
           })

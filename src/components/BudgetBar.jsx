@@ -22,7 +22,7 @@ export function BudgetBar({ spent, budget, pct, onSetBudget }) {
   return (
     <div className={styles.wrap}>
       <div className={styles.top}>
-        <span className={styles.label}>Monthly Budget</span>
+        <span className={styles.label}>Budget this month</span>
         <div className={styles.amounts}>
           <span style={{ color: over ? '#c0392b' : '#16201c' }}>{formatCurrency(spent)}</span>
           <span className={styles.slash}> / </span>
@@ -40,7 +40,7 @@ export function BudgetBar({ spent, budget, pct, onSetBudget }) {
             <span
               className={styles.budgetClickable}
               onClick={() => { setInput(String(budget)); setEditing(true) }}
-              title="Click to edit budget"
+              title="Click to edit your monthly budget"
             >
               {formatCurrency(budget)} ✎
             </span>
@@ -55,8 +55,8 @@ export function BudgetBar({ spent, budget, pct, onSetBudget }) {
       <div className={styles.bottom}>
         <span style={{ color: over ? '#c0392b' : '#1f8a5f' }}>
           {over
-            ? `${formatCurrency(spent - budget)} over budget`
-            : `${formatCurrency(budget - spent)} remaining`}
+            ? `${formatCurrency(spent - budget)} over your budget`
+            : `${formatCurrency(budget - spent)} left in your budget`}
         </span>
         <span className={styles.pct}>{Math.round(pct)}%</span>
       </div>

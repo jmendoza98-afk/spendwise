@@ -21,9 +21,9 @@ export function AddExpenseForm({ onAdd, onClose }) {
 
   function handleSubmit(e) {
     e.preventDefault()
-    if (!form.description.trim()) return setError('Description is required.')
+    if (!form.description.trim()) return setError('Please enter a description.')
     if (!form.amount || isNaN(form.amount) || Number(form.amount) <= 0)
-      return setError('Enter a valid amount.')
+      return setError('Please enter an amount greater than zero.')
     onAdd({ ...form, amount: parseFloat(Number(form.amount).toFixed(2)) })
     setForm(EMPTY)
     onClose()
@@ -33,7 +33,7 @@ export function AddExpenseForm({ onAdd, onClose }) {
     <div className={styles.overlay} onClick={e => e.target === e.currentTarget && onClose()}>
       <div className={styles.modal}>
         <div className={styles.header}>
-          <h2 className={styles.title}>Add Expense</h2>
+          <h2 className={styles.title}>New Expense</h2>
           <button className={styles.close} onClick={onClose}>✕</button>
         </div>
 
@@ -42,7 +42,7 @@ export function AddExpenseForm({ onAdd, onClose }) {
             <label className={styles.label}>Description</label>
             <input
               className={styles.input}
-              placeholder="e.g. Grocery run"
+              placeholder="e.g. Weekly groceries"
               value={form.description}
               onChange={e => set('description', e.target.value)}
             />
@@ -107,7 +107,7 @@ export function AddExpenseForm({ onAdd, onClose }) {
 
           {error && <p className={styles.error}>{error}</p>}
 
-          <button type="submit" className={styles.submit}>Add Expense</button>
+          <button type="submit" className={styles.submit}>Save Expense</button>
         </form>
       </div>
     </div>

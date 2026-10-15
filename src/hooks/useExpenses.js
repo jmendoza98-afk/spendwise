@@ -6,8 +6,8 @@ const BUDGET_KEY  = 'spendwise_budget'
 
 function loadExpenses() {
   try {
-    const raw = localStorage.getItem(STORAGE_KEY)
-    return raw ? JSON.parse(raw) : SEED_EXPENSES
+    const savedExpenses = localStorage.getItem(STORAGE_KEY)
+    return savedExpenses ? JSON.parse(savedExpenses) : SEED_EXPENSES
   } catch {
     return SEED_EXPENSES
   }
@@ -15,8 +15,8 @@ function loadExpenses() {
 
 function loadBudget() {
   try {
-    const raw = localStorage.getItem(BUDGET_KEY)
-    return raw ? Number(raw) : MONTHLY_BUDGET
+    const savedBudget = localStorage.getItem(BUDGET_KEY)
+    return savedBudget ? Number(savedBudget) : MONTHLY_BUDGET
   } catch {
     return MONTHLY_BUDGET
   }
@@ -32,7 +32,7 @@ export function useExpenses() {
   const [filterCategory, setFilterCategory] = useState('all')
   const [searchQuery, setSearchQuery]       = useState('')
   const [sortBy, setSortBy]                 = useState('date_desc')
-  const nextIdRef   = useRef(getNextId(loadExpenses()))
+  const nextIdRef = useRef(getNextId(loadExpenses()))
   const debounceRef = useRef(null)
 
   useEffect(() => {
@@ -49,10 +49,10 @@ export function useExpenses() {
   }, [expenses])
 
   const setBudget = useCallback((amount) => {
-    const val = Number(amount)
-    if (!val || val <= 0) return
-    setBudgetState(val)
-    localStorage.setItem(BUDGET_KEY, String(val))
+    const value = Number(amount)
+    if (!value || value <= 0) return
+    setBudgetState(value)
+    localStorage.setItem(BUDGET_KEY, String(value))
   }, [])
 
   const totalSpent = expenses.reduce((sum, e) => sum + e.amount, 0)
@@ -66,9 +66,9 @@ export function useExpenses() {
 
   const filtered = expenses
     .filter(e => {
-      const matchCat   = filterCategory === 'all' || e.category === filterCategory
-      const matchQuery = !searchQuery || e.description.toLowerCase().includes(searchQuery.toLowerCase())
-      return matchCat && matchQuery
+      const matchesCategory = filterCategory === 'all' || e.category === filterCategory
+      const matchesSearch = !searchQuery || e.description.toLowerCase().includes(searchQuery.toLowerCase())
+      return matchesCategory && matchesSearch
     })
     .sort((a, b) => {
       if (sortBy === 'date_desc')   return new Date(b.date) - new Date(a.date)
